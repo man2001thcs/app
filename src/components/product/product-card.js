@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import { Avatar, Box, Card, CardContent, Divider, Grid, Typography } from '@mui/material';
 import { Clock as ClockIcon } from '../../icons/clock';
 import { Download as DownloadIcon } from '../../icons/download';
-
+import { Buy_cart as CartButton } from '../../icons/buy_cart';
+import {Button} from '@mui/material'
 export const ProductCard = ({ product, ...rest }) => (
   <Card
     sx={{
@@ -74,7 +75,6 @@ export const ProductCard = ({ product, ...rest }) => (
             display: 'flex'
           }}
         >
-          <DownloadIcon color="action" />
           <Typography
             color="textSecondary"
             display="inline"
@@ -83,8 +83,17 @@ export const ProductCard = ({ product, ...rest }) => (
           >
             {product.totalDownloads}
             {' '}
-            Downloads
+            Lượt truy cập
           </Typography>
+          <Button href = "/"
+          color="textSecondary"
+          display="inline"
+          sx={{ pl: 1, ml: 2, pr: 2 }}
+          variant="body2">
+            Mua  
+          <CartButton color="action" />
+          </Button>
+          
         </Grid>
       </Grid>
     </Box>

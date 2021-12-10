@@ -66,6 +66,7 @@ const App = () => {
 
     onSubmit: (resetForm) => {
       if(formik.values.password==formik.values.repassword){
+        alert("Đăng kí thành công!")
         router.push('/login');
       }else{
         alert("Mật khẩu không khớp!");
@@ -232,7 +233,7 @@ const App = () => {
                 type="submit"
                 variant="contained"
               >
-                Đăng nhập ngay
+                Đăng kí
               </Button>
             </Box>
             <Typography

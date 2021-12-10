@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, setStyle } from 'react';
+import React, {useState} from "react";
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
@@ -15,8 +16,13 @@ import { Users as UsersIcon } from '../icons/users';
 import { XCircle as XCircleIcon } from '../icons/x-circle';
 import { Logo } from './logo';
 import { NavItem } from './nav-item';
+import MenuList from '@mui/material/MenuList';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemText from '@mui/material/ListItemText';
 
-const items = [
+
+
+const items1 = [
   {
     href: '/blog',
     icon: (<UsersIcon fontSize="small" />),
@@ -25,18 +31,40 @@ const items = [
   {
     href: '/customers',
     icon: (<UsersIcon fontSize="small" />),
-    title: 'Danh sách khách hàng'
-  },
-  {
-    href: '/',
-    icon: (<ChartBarIcon fontSize="small" />),
-    title: 'Thông tin sản phẩm'
-  },
+    title: 'Danh sách khách hàng',
+    
+  }
+];
+
+const items3 = [
   {
     href: '/products',
     icon: (<ShoppingBagIcon fontSize="small" />),
-    title: 'Đổi điểm sản phẩm'
-  },
+    title: 'Sản phẩm'
+  }
+  
+];
+
+const items4 = [
+  {
+    href: '/',
+    icon: (<ChartBarIcon fontSize="small" />),
+    title: 'Shop',
+    
+  }
+];
+
+const items5 = [
+  {
+    href: '/',
+    icon: (<ChartBarIcon fontSize="small" />),
+    title: 'Tổng quan',
+    
+  }
+];
+
+const items2 = [
+   
   {
     href: '/account',
     icon: (<UserIcon fontSize="small" />),
@@ -65,7 +93,10 @@ const items = [
 ];
 
 export const DashboardSidebar = (props) => {
+  const [style, setStyle] = useState({display: 'none'});
   const { open, onClose } = props;
+  
+  const { href, icon, title, ...others } = props;
   const router = useRouter();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'), {
     defaultMatches: true,
@@ -135,7 +166,7 @@ export const DashboardSidebar = (props) => {
                   color="neutral.400"
                   variant="body2"
                 >
-                  Your tier
+                  Rank
                   {' '}
                   : Premium
                 </Typography>
@@ -157,7 +188,65 @@ export const DashboardSidebar = (props) => {
           }}
         />
         <Box sx={{ flexGrow: 1 }}>
-          {items.map((item) => (
+          {items1.map((item) => (
+            <NavItem
+              key={item.title}
+              icon={item.icon}
+              href={item.href}
+              title={item.title}
+            />
+            
+          ))}
+
+          <Box sx={{ flexGrow: 1 }}
+          >
+            <MenuList sx={{ flexGrow: 1,backgroundColor: 'rgba(255,255,255, 0.08)',
+            borderRadius: 1,
+            color: 'neutral.300',
+            fontWeight: 'fontWeightBold',
+            justifyContent: 'flex-start',
+            px: 4.5,
+            textAlign: 'left',
+            textTransform: 'none',
+            width: '100%',
+            '& .MuiButton-startIcon': {
+              color: 'neutral.400'
+            },
+            '&:hover': {
+              backgroundColor: 'rgba(255,255,255, 0.08)'
+            } 
+            }}>
+             Shop
+             <MenuItem>
+             {items5.map((item) => (
+           
+           <NavItem
+              key={item.title}
+              icon={item.icon}
+              href={item.href}
+              title={item.title}
+            />
+          ))}
+              </MenuItem>
+              <MenuItem>
+             {items3.map((item) => (
+           
+           <NavItem
+              key={item.title}
+              icon={item.icon}
+              href={item.href}
+              title={item.title}
+            />
+          ))}
+              </MenuItem>
+
+           
+            </MenuList>
+            
+           </Box>
+
+
+          {items2.map((item) => (
             <NavItem
               key={item.title}
               icon={item.icon}
@@ -166,57 +255,8 @@ export const DashboardSidebar = (props) => {
             />
           ))}
         </Box>
-        <Divider sx={{ borderColor: '#2D3748' }} />
-        <Box
-          sx={{
-            px: 2,
-            py: 3
-          }}
-        >
-          <Typography
-            color="neutral.100"
-            variant="subtitle2"
-          >
-            Need more features?
-          </Typography>
-          <Typography
-            color="neutral.500"
-            variant="body2"
-          >
-            Check out our Pro solution template.
-          </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              mt: 2,
-              mx: 'auto',
-              width: '160px',
-              '& img': {
-                width: '100%'
-              }
-            }}
-          >
-            <img
-              alt="Go to pro"
-              src="/static/images/sidebar_pro.png"
-            />
-          </Box>
-          <NextLink
-            href="https://material-kit-pro-react.devias.io/"
-            passHref
-          >
-            <Button
-              color="secondary"
-              component="a"
-              endIcon={(<OpenInNewIcon />)}
-              fullWidth
-              sx={{ mt: 2 }}
-              variant="contained"
-            >
-              Pro Live Preview
-            </Button>
-          </NextLink>
-        </Box>
+        
+      
       </Box>
     </>
   );

@@ -30,23 +30,12 @@ export const ProductListToolbar = (props) => (
         Products
       </Typography>
       <Box sx={{ m: 1 }}>
-        <Button
-          startIcon={(<UploadIcon fontSize="small" />)}
-          sx={{ mr: 1 }}
-        >
-          Import
-        </Button>
-        <Button
-          startIcon={(<DownloadIcon fontSize="small" />)}
-          sx={{ mr: 1 }}
-        >
-          Export
-        </Button>
+        
         <Button
           color="primary"
           variant="contained"
         >
-          Add products
+          Thêm sản phẩm (dev)
         </Button>
       </Box>
     </Box>
