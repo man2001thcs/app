@@ -3,7 +3,6 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import {Blog_input} from '/pages/member/blog_input';
 import {
   Box,
   Button,
@@ -89,9 +88,6 @@ const App = () => {
                 variant="h4"
               >
                 Blog mới
-                <Blog_input>
-                  
-                </Blog_input>
               </Typography>
              
             </Box>

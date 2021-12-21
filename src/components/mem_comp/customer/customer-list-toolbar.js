@@ -5,16 +5,11 @@ import {
   CardContent,
   TextField,
   InputAdornment,
-  SvgIcon,
-  Typography
+  SvgIcon, Typography
 } from '@mui/material';
+import { Search as SearchIcon } from '../../../icons/search';
 
-import { Search as SearchIcon } from '../../icons/search';
-
-
-
-export const BlogListToolbar = (props) => (
-  
+export const CustomerListToolbar = (props) => (
   <Box {...props}>
     <Box
       sx={{
@@ -29,18 +24,8 @@ export const BlogListToolbar = (props) => (
         sx={{ m: 1 }}
         variant="h4"
       >
-        Blogs
-      </Typography>
-      <Box sx={{ m: 1 }}>
-        
-        <Button
-          color="primary"
-          variant="contained"
-          href = '/member/blog_input'
-        >
-          Viết blog
-        </Button>
-      </Box>
+        Customers
+      </Typography>    
     </Box>
     <Box sx={{ mt: 3 }}>
       <Card>
@@ -52,15 +37,15 @@ export const BlogListToolbar = (props) => (
                 startAdornment: (
                   <InputAdornment position="start">
                     <SvgIcon
-                      fontSize="small"
                       color="action"
+                      fontSize="small"
                     >
                       <SearchIcon />
                     </SvgIcon>
                   </InputAdornment>
                 )
               }}
-              placeholder="Tìm blog"
+              placeholder="Search customer"
               variant="outlined"
             />
           </Box>

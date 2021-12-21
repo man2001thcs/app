@@ -33,13 +33,7 @@ export const BlogListToolbar = (props) => (
       </Typography>
       <Box sx={{ m: 1 }}>
         
-        <Button
-          color="primary"
-          variant="contained"
-          href = '/member/blog_input'
-        >
-          Viết blog
-        </Button>
+
       </Box>
     </Box>
     <Box sx={{ mt: 3 }}>

@@ -2,9 +2,8 @@ import PropTypes from 'prop-types';
 import { Avatar, Box, Card, CardContent, Divider, Grid, Typography } from '@mui/material';
 import { Clock as ClockIcon } from '../../icons/clock';
 import { Download as DownloadIcon } from '../../icons/download';
-import { Buy_cart as CartButton } from '../../icons/buy_cart';
-import {Button} from '@mui/material'
-export const ProductCard = ({ product, ...rest }) => (
+
+export const BlogCard = ({ blog, ...rest }) => (
   <Card
     sx={{
       display: 'flex',
@@ -23,7 +22,7 @@ export const ProductCard = ({ product, ...rest }) => (
       >
         <Avatar
           alt="Product"
-          src={product.media}
+          src={blog.media}
           variant="square"
         />
       </Box>
@@ -33,14 +32,14 @@ export const ProductCard = ({ product, ...rest }) => (
         gutterBottom
         variant="h5"
       >
-        {product.title}
+        {blog.title}
       </Typography>
       <Typography
         align="center"
         color="textPrimary"
         variant="body1"
       >
-        {product.description}
+        {blog.description}
       </Typography>
     </CardContent>
     <Box sx={{ flexGrow: 1 }} />
@@ -65,11 +64,7 @@ export const ProductCard = ({ product, ...rest }) => (
             sx={{ pl: 1 }}
             variant="body2"
           >
-            Updated 3hr ago
-            {' - '}
-            {product.totalDownloads}
-            {' '}
-            Truy cập
+            Updated 2hr ago
           </Typography>
         </Grid>
         <Grid
@@ -79,24 +74,23 @@ export const ProductCard = ({ product, ...rest }) => (
             display: 'flex'
           }}
         >
-        
-
-          <Button href = "/"
-          color="textSecondary"
-          display="inline"
-          
-          sx={{ pl: 1, ml: 2, pr: 0, }}
-          variant="body2">
-            Mua  
-          <CartButton color="action" />
-          </Button>
-          
+          <DownloadIcon color="action" />
+          <Typography
+            color="textSecondary"
+            display="inline"
+            sx={{ pl: 1 }}
+            variant="body2"
+          >
+            {blog.totalDownloads}
+            {' '}
+            Downloads
+          </Typography>
         </Grid>
       </Grid>
     </Box>
   </Card>
 );
 
-ProductCard.propTypes = {
-  product: PropTypes.object.isRequired
+BlogCard.propTypes = {
+  blog: PropTypes.object.isRequired
 };

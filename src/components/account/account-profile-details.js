@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import * as React from 'react';
 import {
   Box,
   Button,
@@ -12,8 +13,8 @@ import {
 
 const states = [
   {
-    value: 'alabama',
-    label: 'Alabama'
+    value: 'N/A',
+    label: 'N/A'
   },
   {
     value: 'new-york',
@@ -25,22 +26,62 @@ const states = [
   }
 ];
 
-export const AccountProfileDetails = (props) => {
-  const [values, setValues] = useState({
-    firstName: 'Katarina',
-    lastName: 'Smith',
-    email: 'demo@devias.io',
-    phone: '',
-    state: 'Alabama',
-    country: 'USA'
-  });
+const districts = [
+  {
+    value: 'N/A',
+    label: 'N/A'
+  },
+  {
+    value: 'new-york',
+    label: 'New York'
+  },
+  {
+    value: 'san-francisco',
+    label: 'San Francisco'
+  }
+];
 
+
+  
+
+export const AccountProfileDetails = (props) => {
+
+  const [province, setProvince] = React.useState(false);
+  const [district, setDistrict] = React.useState(true);
+
+
+  const handleChange1 = (event) => {
+    if (event.target.value == 'N/A')
+    setDistrict(true); 
+    else 
+    setDistrict(false); 
+  };
+
+  
   const handleChange = (event) => {
     setValues({
       ...values,
       [event.target.name]: event.target.value
     });
   };
+
+  const handleChange2 = (event) => {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value
+    });
+  };
+  
+  const [values, setValues] = useState({
+    firstName: 'Katarina',
+    lastName: 'Smith',
+    email: 'demo@devias.io',
+    phone: '',
+    state: 'Alabama',
+    district: 'Alabama',
+    country: 'USA'
+  });
+
 
   return (
     <form
@@ -50,7 +91,7 @@ export const AccountProfileDetails = (props) => {
     >
       <Card>
         <CardHeader
-          subheader="The information can be edited"
+          subheader="Các thông tin bên dưới có thể cập nhật"
           title="Profile"
         />
         <Divider />
@@ -65,9 +106,8 @@ export const AccountProfileDetails = (props) => {
               xs={12}
             >
               <TextField
-                fullWidth
-                helperText="Please specify the first name"
-                label="First name"
+                fullWidth               
+                label="Tên"
                 name="firstName"
                 onChange={handleChange}
                 required
@@ -82,7 +122,7 @@ export const AccountProfileDetails = (props) => {
             >
               <TextField
                 fullWidth
-                label="Last name"
+                label="Họ đệm"
                 name="lastName"
                 onChange={handleChange}
                 required
@@ -97,7 +137,7 @@ export const AccountProfileDetails = (props) => {
             >
               <TextField
                 fullWidth
-                label="Email Address"
+                label="Địa chỉ email"
                 name="email"
                 onChange={handleChange}
                 required
@@ -112,7 +152,7 @@ export const AccountProfileDetails = (props) => {
             >
               <TextField
                 fullWidth
-                label="Phone Number"
+                label="Số điện thoại"
                 name="phone"
                 onChange={handleChange}
                 type="number"
@@ -125,25 +165,14 @@ export const AccountProfileDetails = (props) => {
               md={6}
               xs={12}
             >
+             
+
+
               <TextField
                 fullWidth
-                label="Country"
-                name="country"
-                onChange={handleChange}
-                required
-                value={values.country}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Select State"
-                name="state"
+                label="Chọn tỉnh"
+                name="state"               
+                onClick={handleChange1}
                 onChange={handleChange}
                 required
                 select
@@ -160,6 +189,35 @@ export const AccountProfileDetails = (props) => {
                   </option>
                 ))}
               </TextField>
+              </Grid>
+              <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                label="Chọn huyện"
+                name="district"
+                disabled= {district}
+                onChange={handleChange2}
+                required
+                select
+                SelectProps={{ native: true }}
+                value={values.district}
+                variant="outlined"
+              >
+                {districts.map((option) => (
+                  <option
+                    key={option.value}
+                    value={option.value}
+                  >
+                    {option.label}
+                  </option>
+                ))}
+              </TextField>
+
+              
             </Grid>
           </Grid>
         </CardContent>
